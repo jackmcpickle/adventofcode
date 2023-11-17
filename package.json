@@ -1,17 +1,18 @@
 {
-  "name": "advent-of-code",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^5.2.2",
-    "vite-node": "^0.34.6",
-    "vitest": "^0.34.6"
-  }
+    "name": "advent-of-code",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "vitest",
+        "start": "vite-node"
+    },
+    "keywords": [],
+    "author": "Jack McPickle<jackmcpickle@gmail.com>",
+    "license": "ISC",
+    "devDependencies": {
+        "typescript": "^5.2.2",
+        "vite-node": "^0.34.6",
+        "vitest": "^0.34.6"
+    }
 }
