@@ -36,13 +36,6 @@ export function findCorrectStrategyScore(data: string) {
             HandValues[hand],
         );
         const handScore = handScoreFight(hand);
-        console.log({
-            elf: HandValues[elf],
-            winOfLose: WIN_LOW_DRAW[winOfLose],
-            hand: HandValues[hand],
-            fightScore,
-            handScore,
-        });
         return score + fightScore + handScore;
     }, 0);
 }
