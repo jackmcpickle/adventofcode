@@ -1,5 +1,6 @@
+import { isNotNull } from '../../helpers/isNotNull';
 import { Stack } from './stack';
-import { InstructionSet, isNotNull } from './types';
+import { InstructionSet } from './types';
 
 export function makeInstructionSet(line: string): InstructionSet {
     // parse move x from y to z
