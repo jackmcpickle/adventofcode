@@ -12,7 +12,7 @@ describe('DAY 4', () => {
     test('part 1', () => {
        expect(getTotalCardsPower(INPUT)).toBe(13);
     });
-    test('part 1', () => {
+    test('part 2', () => {
        expect(getTotalCardsCound(INPUT)).toBe(30);
     });
 });

@@ -1,9 +1,8 @@
-import { log } from "console";
-import { Card } from "./types";
-import {intersection} from 'lodash-es'
+import { Card } from './types';
+import { intersection } from 'lodash-es';
 
 const GAME_ID_SELECTOR = /(?<=Card[\s]+)([0-9]+)/gm;
-const NUMBER_SELECTOR = /([0-9]+)/gm
+const NUMBER_SELECTOR = /([0-9]+)/gm;
 
 export function parseCards(input: string): Card[] {
     return input.split('\n').map(parseCard);
@@ -26,11 +25,11 @@ export function parseCardHands(lines: string): number[][] {
 }
 
 export function parseCardHand(setline: string): number[] {
-    const numberMatch = setline.matchAll(NUMBER_SELECTOR)
+    const numberMatch = setline.matchAll(NUMBER_SELECTOR);
     const sets: number[] = [];
     for (const match of numberMatch) {
         const [number] = match;
-        sets.push(Number(number))
+        sets.push(Number(number));
     }
     return sets;
 }
@@ -47,14 +46,14 @@ export function getTotalCardsPower(input: string): number {
 export function getTotalCardsCound(input: string): number {
     const cards = parseCards(input);
     const cardCounts = new Map<number, number>();
-    cards.forEach(card => cardCounts.set(card.id, 1));
+    cards.forEach((card) => cardCounts.set(card.id, 1));
     cards.forEach((card) => {
         Array.from(Array(card.winningCount).keys()).forEach((i) => {
             const indexKey = card.id + i + 1;
-            const cardCount = cardCounts.get(card.id)!
+            const cardCount = cardCounts.get(card.id)!;
             const count = cardCounts.get(indexKey)!;
             cardCounts.set(indexKey, cardCount + count);
-        })
+        });
     });
     let total = 0;
     for (const [key, value] of cardCounts.entries()) {
