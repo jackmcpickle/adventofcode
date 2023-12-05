@@ -1,19 +1,25 @@
-class DoublyLinkedListNode {
-    public value: any;
-    public next: DoublyLinkedListNode;
-    public prev: DoublyLinkedListNode;
+export class DoublyLinkedListNode<Type> {
+    public value: Type | null = null;
+    public next: DoublyLinkedListNode<Type> | null = null;
+    public prev: DoublyLinkedListNode<Type> | null = null;
 }
 
-class DoublyLinkedList {
-    private head: DoublyLinkedListNode;
-    private tail: DoublyLinkedListNode;
+export class DoublyLinkedList<Type> {
+    private source: DoublyLinkedListNode<Type> | null;
+    private destination: DoublyLinkedListNode<Type> | null;
 
+    private name: string;
     private size: number;
 
-    constructor() {
-        this.head = null;
-        this.tail = null;
+    constructor(name: string) {
+        this.name = name;
+        this.source = null;
+        this.destination = null;
         this.size = 0;
+    }
+
+    public getName(): string {
+        return this.name;
     }
 
     public length(): number {
@@ -24,11 +30,11 @@ class DoublyLinkedList {
         return this.size <= 0;
     }
 
-    public contains(value: any): boolean {
+    public contains(value: Type): boolean {
         if (this.isEmpty()) {
             return false;
         }
-        let tmp = this.head;
+        let tmp = this.source;
         while (tmp != null) {
             if (tmp.value === value) {
                 return true;
@@ -45,14 +51,14 @@ class DoublyLinkedList {
 
         if (index > this.size / 2) {
             let i = this.size - 1 - index;
-            let tmp = this.tail;
+            let tmp = this.destination;
             while (i > 0) {
                 tmp = tmp.prev;
                 i--;
             }
             return tmp.value;
         } else {
-            let tmp = this.head;
+            let tmp = this.source;
             for (let i = 0; i < index; i++) {
                 tmp = tmp.next;
             }
@@ -60,56 +66,56 @@ class DoublyLinkedList {
         }
     }
 
-    public getFirst(): any {
-        if (this.head != null) {
-            return this.head.value;
+    public getFirst(): Type | null {
+        if (this.source != null) {
+            return this.source.value;
         }
         return null;
     }
 
-    public getLast(): any {
-        if (this.tail != null) {
-            return this.tail.value;
+    public getLast(): Type | null {
+        if (this.destination != null) {
+            return this.destination.value;
         }
         return null;
     }
 
-    public addLast(value: any) {
+    public addLast(value: Type) {
         if (this.isEmpty()) {
-            let tmp = new DoublyLinkedListNode();
-            this.head = tmp;
-            this.tail = tmp;
+            let tmp = new DoublyLinkedListNode<Type>();
+            this.source = tmp;
+            this.destination = tmp;
             this.size++;
             return;
         } else {
-            let tmp = new DoublyLinkedListNode();
+            let tmp = new DoublyLinkedListNode<Type>();
             tmp.next = null;
-            tmp.prev = this.tail;
+            tmp.prev = this.destination;
             tmp.value = value;
 
-            this.tail.next = tmp;
+            this.destination.next = tmp;
 
-            this.tail = tmp;
+            this.destination = tmp;
             this.size++;
         }
     }
 
-    public addFirst(value: any) {
+    public addFirst(value: Type) {
         if (this.isEmpty()) {
-            let tmp = new DoublyLinkedListNode();
+            let tmp = new DoublyLinkedListNode<Type>();
             tmp.value = value;
-            this.head = tmp;
-            this.tail = tmp;
+            this.source = tmp;
+            this.destination = tmp;
             this.size++;
         } else {
-            let tmp = new DoublyLinkedListNode();
-            tmp.next = this.head;
+            let tmp = new DoublyLinkedListNode<Type>();
+            tmp.next = this.source;
             tmp.prev = null;
             tmp.value = value;
 
-            this.head.prev = tmp;
+            this.source.prev = tmp;
 
-            this.head = tmp;
+            this.source = tmp;
             this.size++;
         }
     }
@@ -118,18 +124,18 @@ class DoublyLinkedList {
         if (this.isEmpty()) {
             return;
         }
-        let tmp = this.head;
+        let tmp = this.source;
         while (tmp != null) {
             if (tmp.value === value) {
                 if (tmp.prev != null) {
                     tmp.prev.next = tmp.next;
                 } else {
-                    this.head = tmp.next;
+                    this.source = tmp.next;
                 }
                 if (tmp.next != null) {
                     tmp.next.prev = tmp.prev;
                 } else {
-                    this.tail = tmp.prev;
+                    this.destination = tmp.prev;
                 }
                 this.size--;
                 return;
@@ -144,12 +150,12 @@ class DoublyLinkedList {
             return;
         }
         if (this.size == 1) {
-            this.head = null;
-            this.tail = null;
+            this.source = null;
+            this.destination = null;
             this.size--;
         } else {
-            this.head = this.head.next;
-            this.head.prev = null;
+            this.source = this.source.next;
+            this.source.prev = null;
             this.size--;
         }
     }
@@ -159,22 +165,22 @@ class DoublyLinkedList {
             return;
         }
         if (this.size == 1) {
-            this.head = null;
-            this.tail = null;
+            this.source = null;
+            this.destination = null;
             this.size--;
         } else {
-            this.tail = this.tail.prev;
-            this.tail.next = null;
+            this.destination = this.destination.prev;
+            this.destination.next = null;
             this.size--;
         }
     }
 
-    public indexOf(value: any) {
+    public indexOf(value: Type) {
         if (this.isEmpty()) {
             return -1;
         }
         let index = 0;
-        let tmp = this.head;
+        let tmp = this.source;
         while (tmp != null) {
             if (tmp.value === value) {
                 return index;

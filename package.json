@@ -23,6 +23,7 @@
         "vitest": "^0.34.6"
     },
     "dependencies": {
+        "esbuild": "^0.19.8",
         "lodash-es": "^4.17.21"
     }
 }
