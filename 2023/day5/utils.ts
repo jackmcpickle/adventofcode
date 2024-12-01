@@ -23,7 +23,7 @@ export function parseAlmanacMaps(input: string): AlmanacMap[] {
                         throw new Error(`Invalid map: ${line}`);
                     }
                     group.push({
-                        length: Number(length),
+                        size: Number(length),
                         destination: Number(destination),
                         source: Number(source),
                     } satisfies ParseRange);
@@ -73,7 +73,7 @@ export function findLocationFromSearchId(
     let matchId = 0;
     const matchingRange = startAlmanac.ranges.filter((range) => {
         const min = range.source;
-        const max = range.source + range.length - 1;
+        const max = range.source + range.size - 1;
         return searchId >= min && searchId <= max;
     });
     const closestRange = startAlmanac.ranges.filter((range) => {
@@ -82,7 +82,7 @@ export function findLocationFromSearchId(
     });
     matchingRange.forEach((range, index) => {
         const min = range.source;
-        const max = range.source + range.length - 1;
+        const max = range.source + range.size - 1;
         // console.log({ min, max, index });
         if (searchId >= min && searchId <= max) {
             matchId = range.destination - range.source + searchId;
@@ -124,35 +124,31 @@ export function findLocationFromSearchIdRange(
     const startAlmanac = almanacMaps.find(
         (almanac) => almanac.sourceName === sourceName,
     )!;
-    let matchId = 0;
-    const matchingRange = startAlmanac.ranges.filter((range) => {
+
+    const newRange = [];
+
+    startAlmanac.ranges.forEach((range) => {
         const [min, max] = getMinMaxRangeSource(range);
-        // both searches are inside range?
-        return (
-            searchStart >= min &&
-            searchStart <= max &&
-            searchEnd >= min &&
-            searchEnd <= max
-        );
-    });
-    const closestRange = startAlmanac.ranges.filter((range) => {
-        const min = range.source;
-        return searchStart > min && searchEnd > min;
-    });
-    matchingRange.forEach((range) => {
-        const [min, max] = getMinMaxRangeSource(range);
-        console.log('matchingRange', { min, max });
-        if (searchStart >= min && searchStart <= max) {
-            matchId = range.destination - range.source + searchStart;
+        const beforeRange = [searchStart, Math.min(searchEnd, range.source)];
+        const interRange = [
+            Math.max(searchStart, range.source),
+            Math.min(max, searchEnd),
+        ];
+        const afterRange = [Math.max(max, searchStart), searchEnd];
+
+        if (beforeRange[1] > beforeRange[0]) {
+            newRange.push(beforeRange);
+        }
+        if (interRange[1] > interRange[0]) {
+            A.push(
+                (interRange[0] - range.source + range.destination,
+                interRange[1] - range.source + range.destination),
+            );
+        }
+        if (afterRange[1] > afterRange[0]) {
+            newRange.push(afterRange);
         }
     });
-    if (matchingRange.length === 0) {
-        closestRange.forEach((range, index) => {
-            const [min] = getMinMaxRangeSource(range);
-            if (matchId === 0 && searchStart < min)
-                matchId = range.destination - index + searchStart;
-        });
-    }
 
     if (matchId === 0) {
         matchId = searchStart;
@@ -161,8 +157,6 @@ export function findLocationFromSearchIdRange(
         searchStart,
         searchEnd,
         hasMatch: matchId,
-        closestRange,
-        matchingRange,
     });
 
     if (startAlmanac.destinationName === destinationName) {
@@ -181,6 +175,6 @@ export function createSearchSeeds(input: string): [] {}
 
 export function getMinMaxRangeSource(range: ParseRange): [number, number] {
     const min = range.source;
-    const max = range.source + range.length - 1;
+    const max = range.source + range.size - 1;
     return [min, max];
 }

@@ -6,16 +6,16 @@ export const SEEDS = [
 ];
 
 export const SEED_RANGES: SeedRange[] = [
-    { id: 1778931867, length: 1436999653 },
-    { id: 3684516104, length: 2759374 },
-    { id: 1192793053, length: 358764985 },
-    { id: 1698790056, length: 76369598 },
-    { id: 3733854793, length: 214008036 },
-    { id: 4054174000, length: 171202266 },
-    { id: 3630057255, length: 25954395 },
-    { id: 798587440, length: 316327323 },
-    { id: 290129780, length: 7039123 },
-    { id: 3334326492, length: 246125391 },
+    // { length: 2759374, id: 3684516104 },
+    // { length: 358764985, id: 1192793053 },
+    // { length: 76369598, id: 1698790056 },
+    // { length: 214008036, id: 3733854793 },
+    // { length: 171202266, id: 4054174000 },
+    // { length: 25954395, id: 3630057255 },
+    // { length: 316327323, id: 798587440 },
+    // { length: 7039123, id: 290129780 },
+    // { length: 246125391, id: 3334326492 },
+    { length: 1436999653, id: 1778931867 },
 ];
 
 export const fullSeedRange = SEED_RANGES.map((range) => {

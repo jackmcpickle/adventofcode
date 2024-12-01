@@ -7,7 +7,7 @@ type AlmanacMap = {
 type ParseRange = {
     destination: number;
     source: number;
-    length: number;
+    size: number;
 };
 
 type SeedRange = {

@@ -19,31 +19,32 @@ function main() {
     //     return match;
     // }).sort((a, b) => a - b);
 
-    const ranges = fullSeedRange
-        .map((range) => {
-            let lowest = 0;
-            let matchId = range.min;
-            console.time('range');
-            while (matchId < range.max) {
-                console.time('range max');
-                const match = findLocationFromSearchId(
-                    matchId,
-                    almanacs,
-                    'seed',
-                    'location',
-                );
-                matchId++;
-                if (matchId % 1000000 === 0) {
-                    console.timeEnd('range max');
-                }
-                lowest = match < lowest ? match : lowest;
+    const ranges = fullSeedRange.map((range, index) => {
+        let lowest = 9999999999;
+        let matchId = range.min;
+        console.time('range');
+        console.log('asdas');
+        while (matchId <= range.max) {
+            console.time('range max');
+            const match = findLocationFromSearchId(
+                matchId,
+                almanacs,
+                'seed',
+                'location',
+            );
+            matchId++;
+            if (matchId % 1000000 === 0) {
+                console.timeEnd('range max');
+                console.log({ match });
             }
-            console.timeEnd('range');
-            return lowest;
-        })
-        .sort((a, b) => a - b);
+            lowest = match < lowest ? match : lowest;
+        }
+        console.timeEnd('range');
+        console.log({ lowest, index, matchId });
+        return lowest;
+    });
 
-    console.log(ranges);
+    console.log(Math.min(...ranges));
 }
 
 main();
