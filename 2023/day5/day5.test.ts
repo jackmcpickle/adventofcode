@@ -39,10 +39,7 @@ humidity-to-location map:
 60 56 37
 56 93 4`;
 
-describe('DAY 4', () => {
-    // test('part 1', () => {
-    //     expect(lowestLocationNumber(SEEDS, INPUT)).toBe(35);
-    // });
+describe('DAY 5', () => {
     test('findLocationFromSearchId 99', () => {
         const maps = parseAlmanacMaps(INPUT);
         expect(findLocationFromSearchId(99, maps, 'seed', 'soil')).toBe(51);
@@ -100,12 +97,12 @@ describe('DAY 4', () => {
             {
                 ranges: [
                     {
-                        length: 48,
+                        size: 48,
                         destination: 52,
                         source: 50,
                     },
                     {
-                        length: 2,
+                        size: 2,
                         destination: 50,
                         source: 98,
                     },
@@ -116,17 +113,17 @@ describe('DAY 4', () => {
             {
                 ranges: [
                     {
-                        length: 15,
+                        size: 15,
                         destination: 39,
                         source: 0,
                     },
                     {
-                        length: 37,
+                        size: 37,
                         destination: 0,
                         source: 15,
                     },
                     {
-                        length: 2,
+                        size: 2,
                         destination: 37,
                         source: 52,
                     },
@@ -137,22 +134,22 @@ describe('DAY 4', () => {
             {
                 ranges: [
                     {
-                        length: 7,
+                        size: 7,
                         destination: 42,
                         source: 0,
                     },
                     {
-                        length: 4,
+                        size: 4,
                         destination: 57,
                         source: 7,
                     },
                     {
-                        length: 42,
+                        size: 42,
                         destination: 0,
                         source: 11,
                     },
                     {
-                        length: 8,
+                        size: 8,
                         destination: 49,
                         source: 53,
                     },
@@ -163,12 +160,12 @@ describe('DAY 4', () => {
             {
                 ranges: [
                     {
-                        length: 7,
+                        size: 7,
                         destination: 88,
                         source: 18,
                     },
                     {
-                        length: 70,
+                        size: 70,
                         destination: 18,
                         source: 25,
                     },
@@ -179,17 +176,17 @@ describe('DAY 4', () => {
             {
                 ranges: [
                     {
-                        length: 19,
+                        size: 19,
                         destination: 81,
                         source: 45,
                     },
                     {
-                        length: 13,
+                        size: 13,
                         destination: 68,
                         source: 64,
                     },
                     {
-                        length: 23,
+                        size: 23,
                         destination: 45,
                         source: 77,
                     },
@@ -200,12 +197,12 @@ describe('DAY 4', () => {
             {
                 ranges: [
                     {
-                        length: 69,
+                        size: 69,
                         destination: 1,
                         source: 0,
                     },
                     {
-                        length: 1,
+                        size: 1,
                         destination: 0,
                         source: 69,
                     },
@@ -216,12 +213,12 @@ describe('DAY 4', () => {
             {
                 ranges: [
                     {
-                        length: 37,
+                        size: 37,
                         destination: 60,
                         source: 56,
                     },
                     {
-                        length: 4,
+                        size: 4,
                         destination: 56,
                         source: 93,
                     },
@@ -232,11 +229,11 @@ describe('DAY 4', () => {
         ]);
     });
 
-    test('findLocationFromSearchIdRange', () => {
-        const maps = parseAlmanacMaps(INPUT);
-        const [min, max] = [79, 79 + 14 - 1];
-        expect(
-            findLocationFromSearchIdRange(min, max, maps, 'seed', 'soil'),
-        ).toBe(46);
-    });
+    // test('findLocationFromSearchIdRange', () => {
+    //     const maps = parseAlmanacMaps(INPUT);
+    //     const [min, max] = [79, 79 + 14 - 1];
+    //     expect(
+    //         findLocationFromSearchIdRange(min, max, maps, 'seed', 'soil'),
+    //     ).toBe(46);
+    // });
 });

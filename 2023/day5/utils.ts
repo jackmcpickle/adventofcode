@@ -140,7 +140,7 @@ export function findLocationFromSearchIdRange(
             newRange.push(beforeRange);
         }
         if (interRange[1] > interRange[0]) {
-            A.push(
+            newRange.push(
                 (interRange[0] - range.source + range.destination,
                 interRange[1] - range.source + range.destination),
             );
