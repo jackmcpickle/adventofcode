@@ -1,4 +1,4 @@
-import { readFile } from '../../helpers/readFile';
+import { readFile } from '@/helpers/readFile';
 import { sumAllGearRatios, sumOfAllPossibleMatches } from './utils';
 
 function main() {
