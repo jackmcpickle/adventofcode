@@ -26,17 +26,6 @@ export function getXMASCount(xmasInput: string[]): number {
         .toReversed()
         .reduce(diagonalSearchForXMAS, 0);
 
-    console.log({
-        forward,
-        backwards,
-        vertical,
-        diagonalForwards,
-        backwardsVertical,
-        diagonalBackwardsVerticalBackwards,
-        diagonalBackwardsVertical,
-        diagonalVerticalBackwards,
-    });
-
     return (
         forward +
         backwards +

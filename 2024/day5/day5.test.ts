@@ -38,26 +38,17 @@ describe('DAY 5', () => {
         const correctRows = pageRows.filter((row, rowIndex, rows) => {
             return row.every((page, pageIndex) => {
                 const matchingRules = rules.filter((row) => row[0] === page);
-                // console.log({ page, pageIndex, matchingRules });
                 return matchingRules.every(([min, max]) => {
-                    // console.log({ maxIndex: row.indexOf(max) });
                     return (
                         row.indexOf(max) === -1 || pageIndex < row.indexOf(max)
                     );
                 });
             });
         });
-
-        // console.log({ correctRows });
-
-        const middlePageSize = correctRows.reduce(
-            (acc, row, rowIndex, rows) => {
-                const middlePage = row[Math.round((row.length - 1) / 2)];
-                // console.log({ middlepage: middlePage });
-                return acc + middlePage;
-            },
-            0,
-        );
+        const middlePageSize = correctRows.reduce((acc, row) => {
+            const middlePage = row[Math.round((row.length - 1) / 2)];
+            return acc + middlePage;
+        }, 0);
 
         expect(middlePageSize).toBe(143);
     });
@@ -78,27 +69,22 @@ describe('DAY 5', () => {
 
         const correctedRows = inputCorrectRows.map((row) => {
             const newRow = row.toSorted((pageA, pageB) => {
-                const matchedRule = rules.find((row) => row[0] === pageA && row[1] === pageB);
+                const matchedRule = rules.find(
+                    (row) => row[0] === pageA && row[1] === pageB,
+                );
                 if (!matchedRule) {
                     return 0;
                 }
                 const [min, max] = matchedRule;
                 return row.indexOf(max) - row.indexOf(min);
             });
-            console.log(newRow);
             return newRow;
         });
 
-        // console.log({ correctedRows });
-
-        const middlePageSize = correctedRows.reduce(
-            (acc, row) => {
-                const middlePage = row[Math.round((row.length - 1) / 2)];
-                console.log({ middlepage: middlePage });
-                return acc + middlePage;
-            },
-            0,
-        );
+        const middlePageSize = correctedRows.reduce((acc, row) => {
+            const middlePage = row[Math.round((row.length - 1) / 2)];
+            return acc + middlePage;
+        }, 0);
 
         expect(middlePageSize).toBe(123);
     });

@@ -29,14 +29,11 @@ export function calculateInstructions(
     value: string,
     doCalculation: boolean,
 ): [number, boolean] {
-    console.log({ doCalculation, subtotal, value });
     if (donNotInstructions(value)) {
-        console.log('donNotInstructions');
         doCalculation = false;
     }
 
     if (doInstructions(value)) {
-        console.log('doInstructions');
         doCalculation = true;
     }
 
@@ -46,8 +43,6 @@ export function calculateInstructions(
 
     const [number1, number2] = parseMemoryValues(value);
     const newSubTotal = subtotal + number1 * number2;
-
-    console.log(newSubTotal);
 
     return [newSubTotal, doCalculation];
 }

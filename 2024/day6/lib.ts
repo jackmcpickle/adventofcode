@@ -24,7 +24,7 @@ export function getGrid(input: string[]): Map<string, Cell> {
     const coverage = new Map<string, Cell>();
     const startCoordinates = findStartCoordinates(input);
     addCoverage(coverage, startCoordinates, false);
-    console.log('Starting position', startCoordinates);
+    // console.log('Starting position', startCoordinates);
     const total = moveLoop(coverage, input, startCoordinates, DIRECTION.North);
     return total;
 }
@@ -40,7 +40,7 @@ function moveLoop(
     const possibleMove = getDirectionMove(startCoordinates, direction);
 
     if (outOfBounds(possibleMove, bounds)) {
-        console.log('out of bounds');
+        // console.log('out of bounds');
         return coverage;
     }
 
@@ -51,10 +51,10 @@ function moveLoop(
             newDirection,
         );
         addCoverage(coverage, newDirectionPosition);
-        console.log('turning right to:', newDirection);
+        // console.log('turning right to:', newDirection);
         return moveLoop(coverage, grid, newDirectionPosition, newDirection);
     }
-    console.log('continue straight in ', direction);
+    // console.log('continue straight in ', direction);
     addCoverage(coverage, possibleMove);
     return moveLoop(coverage, grid, possibleMove, direction);
 }

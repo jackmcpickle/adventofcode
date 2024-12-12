@@ -25,13 +25,11 @@ const correctedRows = inputCorrectRows.map((row) => {
         const [min, max] = matchedRule;
         return row.indexOf(max) - row.indexOf(min);
     });
-    console.log(newRow);
     return newRow;
 });
 
 const middlePageSize = correctedRows.reduce((acc, row) => {
     const middlePage = row[Math.round((row.length - 1) / 2)];
-    console.log({ middlepage: middlePage });
     return acc + middlePage;
 }, 0);
 

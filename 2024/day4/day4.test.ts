@@ -48,7 +48,6 @@ describe('Day4', () => {
                     .split('')
                     .filter((char, charIndex, charLine) => {
                         const limit = charIndex + 4 > charLine.length;
-                        console.log({ limit });
                         return (
                             !limit &&
                             char === 'X' &&
@@ -57,8 +56,6 @@ describe('Day4', () => {
                             inputs[index + 3][charIndex + 3] === 'S'
                         );
                     });
-
-                // console.log(match);
 
                 return acc + match.length;
             },
@@ -85,7 +82,6 @@ describe('Day4', () => {
                 const regexXMAS = /(XMAS)/g;
                 const matches = line.matchAll(regexXMAS);
                 const xmasMatches = Array.from(matches, (m) => m[0]);
-                // console.log(xmasMatches);
                 return acc + xmasMatches.length;
             },
             0,
