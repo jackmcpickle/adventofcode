@@ -1,9 +1,9 @@
 import { pages } from './pages';
 import { rules } from './pageRules';
 
-const inputCorrectRows = pages.filter((row) => {
+const inputCorrectRows = pages.filter(row => {
     return row.some((page, pageIndex) => {
-        const matchingRules = rules.filter((row) => row[0] === page);
+        const matchingRules = rules.filter(row => row[0] === page);
 
         return matchingRules.some(([_, comparePage]) => {
             const match =
@@ -14,10 +14,10 @@ const inputCorrectRows = pages.filter((row) => {
     });
 });
 
-const correctedRows = inputCorrectRows.map((row) => {
+const correctedRows = inputCorrectRows.map(row => {
     const newRow = row.toSorted((pageA, pageB) => {
         const matchedRule = rules.find(
-            (row) => row[0] === pageA && row[1] === pageB,
+            row => row[0] === pageA && row[1] === pageB,
         );
         if (!matchedRule) {
             return 0;

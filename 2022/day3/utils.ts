@@ -13,7 +13,7 @@ export function getAllRuckSackItems(line: string): SingleCompartment {
 }
 
 export function findMatchingItem(sack: Rucksack): string | undefined {
-    return sack[0].find((item) => sack[1].includes(item));
+    return sack[0].find(item => sack[1].includes(item));
 }
 
 export function getCharPriority(char: keyof typeof CHAR_PRIORITY): number {
@@ -35,7 +35,7 @@ export function searchGroupForDuplicates([
     rucksack3,
 ]: SingleCompartment[]): number {
     const char = rucksack1.find(
-        (item1) => rucksack2.includes(item1) && rucksack3.includes(item1),
+        item1 => rucksack2.includes(item1) && rucksack3.includes(item1),
     );
     if (!char) {
         return 0;

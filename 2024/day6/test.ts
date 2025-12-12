@@ -18,7 +18,7 @@ function parseInput(input: string[]): {
     start: Position;
     direction: number;
 } {
-    const map = input.map((line) => line.split(''));
+    const map = input.map(line => line.split(''));
     let start: Position = { x: 0, y: 0 };
     let direction = 0;
 
@@ -86,7 +86,7 @@ function findLoopObstructions(
             if (map[y][x] !== '.') continue; // Only consider empty spaces
 
             // Clone the map and add an obstruction
-            const newMap = map.map((row) => [...row]);
+            const newMap = map.map(row => [...row]);
             newMap[y][x] = '#';
 
             const visited = new Set<string>();

@@ -36,8 +36,8 @@ export function createSpecialCharRows(input: string): Cell[] {
 }
 
 export function searchClosestSymbol(searchCells: Cell[], findCells: Cell[]) {
-    return findCells.filter((cell) =>
-        searchCells.some((searchCell) => hasAdjacentMatch(searchCell, cell)),
+    return findCells.filter(cell =>
+        searchCells.some(searchCell => hasAdjacentMatch(searchCell, cell)),
     );
 }
 
@@ -70,10 +70,8 @@ export function sumOfAllPossibleMatches(input: string): number {
 }
 
 export function findGears(gearCells: Cell[], ratioCells: Cell[]) {
-    return gearCells.map((cell) => {
-        const cells = ratioCells.filter((rCell) =>
-            hasAdjacentMatch(cell, rCell),
-        );
+    return gearCells.map(cell => {
+        const cells = ratioCells.filter(rCell => hasAdjacentMatch(cell, rCell));
         if (cells.length === 2) {
             return cells.reduce(timesCol, 1);
         }

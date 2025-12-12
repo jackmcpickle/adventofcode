@@ -18,7 +18,7 @@ export const SEED_RANGES: SeedRange[] = [
     { length: 1436999653, id: 1778931867 },
 ];
 
-export const fullSeedRange = SEED_RANGES.map((range) => {
+export const fullSeedRange = SEED_RANGES.map(range => {
     return {
         min: range.id,
         max: range.id + range.length - 1,

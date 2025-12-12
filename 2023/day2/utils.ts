@@ -43,7 +43,7 @@ export function findMinimumSet(games: GameSets[]): GameSets {
         red: 0,
         blue: 0,
     } satisfies GameSets;
-    games.forEach((game) => {
+    games.forEach(game => {
         minSet.blue = minSet.blue <= game.blue ? game.blue : minSet.blue;
         minSet.red = minSet.red <= game.red ? game.red : minSet.red;
         minSet.green = minSet.green <= game.green ? game.green : minSet.green;
@@ -63,7 +63,7 @@ export function getTotalGamesPower(input: string): number {
 
 export function isPossibleGame(games: GameSets[], maxSet: GameSets): boolean {
     return games.every(
-        (game) =>
+        game =>
             game.blue <= maxSet.blue &&
             game.red <= maxSet.red &&
             game.green <= maxSet.green,
@@ -75,7 +75,7 @@ export function findTotalMatchingGameIds(
     possibleGame: GameSets,
 ): number {
     const games = parseGames(data);
-    const possible = games.filter((game) =>
+    const possible = games.filter(game =>
         isPossibleGame(game.sets, possibleGame),
     );
     return possible.reduce((sum, game) => sum + game.id, 0);

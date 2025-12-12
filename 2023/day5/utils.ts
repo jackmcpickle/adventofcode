@@ -8,11 +8,11 @@ export function parseAlmanacMaps(input: string): AlmanacMap[] {
     const numberMaps = input
         .replace(MAP_NAMES_EXCLUDE, '')
         .split(':')
-        .filter((n) => n.trim())
-        .map((line) =>
+        .filter(n => n.trim())
+        .map(line =>
             line
                 .split('\n')
-                .filter((n) => n.trim())
+                .filter(n => n.trim())
                 .reduce((group, line) => {
                     const [destination, source, length] = line.split(' ');
                     if (
@@ -55,7 +55,7 @@ export function searchAlmanacMap(
     destinationName: string,
 ): AlmanacMap | undefined {
     return almanacMaps.find(
-        (almanac) =>
+        almanac =>
             almanac.sourceName === sourceName &&
             almanac.destinationName === destinationName,
     );
@@ -68,15 +68,15 @@ export function findLocationFromSearchId(
     destinationName: string,
 ): number {
     const startAlmanac = almanacMaps.find(
-        (almanac) => almanac.sourceName === sourceName,
+        almanac => almanac.sourceName === sourceName,
     )!;
     let matchId = 0;
-    const matchingRange = startAlmanac.ranges.filter((range) => {
+    const matchingRange = startAlmanac.ranges.filter(range => {
         const min = range.source;
         const max = range.source + range.size - 1;
         return searchId >= min && searchId <= max;
     });
-    const closestRange = startAlmanac.ranges.filter((range) => {
+    const closestRange = startAlmanac.ranges.filter(range => {
         const min = range.source;
         return searchId > min;
     });
@@ -122,12 +122,12 @@ export function findLocationFromSearchIdRange(
     destinationName: string,
 ): number {
     const startAlmanac = almanacMaps.find(
-        (almanac) => almanac.sourceName === sourceName,
+        almanac => almanac.sourceName === sourceName,
     )!;
 
     const newRange = [];
 
-    startAlmanac.ranges.forEach((range) => {
+    startAlmanac.ranges.forEach(range => {
         const [min, max] = getMinMaxRangeSource(range);
         const beforeRange = [searchStart, Math.min(searchEnd, range.source)];
         const interRange = [

@@ -1,8 +1,8 @@
 import { Sections, SectionsGroup } from './types';
 
 export function createSectionGroups(sectionList: string): SectionsGroup[] {
-    return sectionList.split('\n').map((sectionGroup) => {
-        return sectionGroup.split(',').map((section) => {
+    return sectionList.split('\n').map(sectionGroup => {
+        return sectionGroup.split(',').map(section => {
             return section.split('-').map(Number) as Sections;
         });
     });

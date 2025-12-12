@@ -50,7 +50,7 @@ export function sumCarryGroup(...group: CarryGroupTotals) {
 export function getGroupsFromFile(data: string): CarryGroupsByIndex {
     const groups: CarryGroupsByIndex = { 0: [] };
     let groupIndex: number = 0;
-    data.split('\n').forEach((number) => {
+    data.split('\n').forEach(number => {
         const count = Number(number);
         if (count === 0) {
             groupIndex = groupIndex + 1;

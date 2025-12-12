@@ -46,9 +46,9 @@ export function getTotalCardsPower(input: string): number {
 export function getTotalCardsCound(input: string): number {
     const cards = parseCards(input);
     const cardCounts = new Map<number, number>();
-    cards.forEach((card) => cardCounts.set(card.id, 1));
-    cards.forEach((card) => {
-        Array.from(Array(card.winningCount).keys()).forEach((i) => {
+    cards.forEach(card => cardCounts.set(card.id, 1));
+    cards.forEach(card => {
+        Array.from(Array(card.winningCount).keys()).forEach(i => {
             const indexKey = card.id + i + 1;
             const cardCount = cardCounts.get(card.id)!;
             const count = cardCounts.get(indexKey)!;

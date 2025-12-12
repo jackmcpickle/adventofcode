@@ -37,7 +37,7 @@ export function convertToRawCalibrationInput(
     const data = input.split('\n');
     // regex remove all letter and keep numbers
     const selectNum = new RegExp('[a-z]+', 'gmi');
-    const calibration = data.map((text) =>
+    const calibration = data.map(text =>
         text.replace(selectNum, '').split('').map(Number).filter(isNotNaN),
     );
     return calibration as RawCalibrationInput[];
@@ -46,7 +46,7 @@ export function convertToRawCalibrationInput(
 export function takeCalibrationInput(
     input: RawCalibrationInput[],
 ): CalibrationInput[] {
-    return input.map((calibration) => [
+    return input.map(calibration => [
         calibration[0],
         calibration[calibration.length - 1],
     ]);
@@ -73,7 +73,7 @@ export function findLargestWithWordsBundle(input: string): number {
 
 export function searchForDigitWord(input: string): RawCalibrationInput[] {
     const data = input.split('\n');
-    return data.map((line) => mapDigitWord(line));
+    return data.map(line => mapDigitWord(line));
 }
 
 export function mapDigitWord(line: string): RawCalibrationInput {

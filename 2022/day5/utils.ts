@@ -26,7 +26,7 @@ export function executeSingleInstructionOnStacks(
     stacks: Stack<string>[],
     instructionSets: InstructionSet[],
 ) {
-    instructionSets.forEach((instruction) => {
+    instructionSets.forEach(instruction => {
         const moves = makeIterator(instruction.move);
         moves.forEach(() => {
             const stackFrom = getStackById(stacks, instruction.from);
@@ -42,7 +42,7 @@ export function executeMultiMoveInstructionOnStacks(
     stacks: Stack<string>[],
     instructionSets: InstructionSet[],
 ) {
-    instructionSets.forEach((instruction) => {
+    instructionSets.forEach(instruction => {
         const moves = makeIterator(instruction.move);
         const stackFrom = getStackById(stacks, instruction.from);
         const stackTo = getStackById(stacks, instruction.to);
@@ -51,7 +51,7 @@ export function executeMultiMoveInstructionOnStacks(
             items
                 .reverse()
                 .filter(isNotNull)
-                .forEach((item) => stackTo.push(item));
+                .forEach(item => stackTo.push(item));
         }
     });
     return stacks;
@@ -70,8 +70,8 @@ export function makeStack(lines: string): Stack<string>[] {
     const columns = makeIterator(numberOfStack);
     const stacks = makeIterator(numberOfStack).map(() => new Stack<string>());
 
-    rows.forEach((data) => {
-        columns.forEach((col) => {
+    rows.forEach(data => {
+        columns.forEach(col => {
             const rangeFrom = getStart(col, rowSize, gapSize);
             const rangeTo = getEnd(col, rowSize, gapSize);
             const stackString = data.substring(rangeFrom, rangeTo);
@@ -83,7 +83,7 @@ export function makeStack(lines: string): Stack<string>[] {
         });
     });
 
-    stacks.forEach((stack) => {
+    stacks.forEach(stack => {
         stack.flip();
     });
     return stacks;
@@ -150,5 +150,5 @@ function getStackById(
     stacks: Stack<string>[],
     id: number,
 ): Stack<string> | undefined {
-    return stacks.find((stack) => stack.getId() === id);
+    return stacks.find(stack => stack.getId() === id);
 }

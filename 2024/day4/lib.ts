@@ -2,7 +2,7 @@ export function getXMASCount(xmasInput: string[]): number {
     const forward = xmasInput.reduce(forwardSearchForXMAS, 0);
 
     const backwards = xmasInput
-        .map((line) => line.split('').toReversed().join(''))
+        .map(line => line.split('').toReversed().join(''))
         .reduce(forwardSearchForXMAS, 0);
 
     const vertical = xmasInput.reduce(verticalSearchForXMAS, 0);
@@ -15,11 +15,11 @@ export function getXMASCount(xmasInput: string[]): number {
 
     const diagonalBackwardsVerticalBackwards = xmasInput
         .toReversed()
-        .map((line) => line.split('').toReversed().join(''))
+        .map(line => line.split('').toReversed().join(''))
         .reduce(diagonalSearchForXMAS, 0);
 
     const diagonalBackwardsVertical = xmasInput
-        .map((line) => line.split('').toReversed().join(''))
+        .map(line => line.split('').toReversed().join(''))
         .reduce(diagonalSearchForXMAS, 0);
 
     const diagonalVerticalBackwards = xmasInput
@@ -46,7 +46,7 @@ function forwardSearchForXMAS(
 ): number {
     const regexXMAS = /(XMAS)/g;
     const matches = line.matchAll(regexXMAS);
-    const xmasMatches = Array.from(matches, (m) => m[0]);
+    const xmasMatches = Array.from(matches, m => m[0]);
     return acc + xmasMatches.length;
 }
 

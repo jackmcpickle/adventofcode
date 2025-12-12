@@ -7,14 +7,14 @@ export function parseInput(input: string): Equation[] {
     return input
         .trim()
         .split('\n')
-        .map((line) => {
+        .map(line => {
             const [target, numbers] = line.split(':');
             return {
                 target: parseInt(target.trim(), 10),
                 numbers: numbers
                     .trim()
                     .split(' ')
-                    .map((num) => parseInt(num, 10)),
+                    .map(num => parseInt(num, 10)),
             };
         });
 }
@@ -22,7 +22,7 @@ export function parseInput(input: string): Equation[] {
 export function generateOperatorCombinations(n: number): string[][] {
     if (n === 1) return [[]];
     const smallerCombos = generateOperatorCombinations(n - 1);
-    return smallerCombos.flatMap((combo) => [
+    return smallerCombos.flatMap(combo => [
         [...combo, '+'],
         [...combo, '*'],
         [...combo, '||'],

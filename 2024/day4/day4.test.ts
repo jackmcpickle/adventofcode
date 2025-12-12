@@ -73,7 +73,7 @@ describe('Day4', () => {
             'MSAMASMSMX',
         ];
 
-        const reversedInput = input.map((line) =>
+        const reversedInput = input.map(line =>
             line.split('').reverse().join(''),
         );
 
@@ -81,7 +81,7 @@ describe('Day4', () => {
             (acc, line, index, inputs) => {
                 const regexXMAS = /(XMAS)/g;
                 const matches = line.matchAll(regexXMAS);
-                const xmasMatches = Array.from(matches, (m) => m[0]);
+                const xmasMatches = Array.from(matches, m => m[0]);
                 return acc + xmasMatches.length;
             },
             0,

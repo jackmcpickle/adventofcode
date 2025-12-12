@@ -37,7 +37,7 @@ describe('DAY 5', () => {
     test('correctRows middlePage sum', () => {
         const correctRows = pageRows.filter((row, rowIndex, rows) => {
             return row.every((page, pageIndex) => {
-                const matchingRules = rules.filter((row) => row[0] === page);
+                const matchingRules = rules.filter(row => row[0] === page);
                 return matchingRules.every(([min, max]) => {
                     return (
                         row.indexOf(max) === -1 || pageIndex < row.indexOf(max)
@@ -56,7 +56,7 @@ describe('DAY 5', () => {
     test('IncorrectRows middlePage sum', () => {
         const inputCorrectRows = pageRows.filter((row, rowIndex, rows) => {
             return row.some((page, pageIndex) => {
-                const matchingRules = rules.filter((row) => row[0] === page);
+                const matchingRules = rules.filter(row => row[0] === page);
 
                 return matchingRules.some(([_, comparePage]) => {
                     const match =
@@ -67,10 +67,10 @@ describe('DAY 5', () => {
             });
         });
 
-        const correctedRows = inputCorrectRows.map((row) => {
+        const correctedRows = inputCorrectRows.map(row => {
             const newRow = row.toSorted((pageA, pageB) => {
                 const matchedRule = rules.find(
-                    (row) => row[0] === pageA && row[1] === pageB,
+                    row => row[0] === pageA && row[1] === pageB,
                 );
                 if (!matchedRule) {
                     return 0;
